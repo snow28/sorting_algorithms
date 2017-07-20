@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Algorithm and Complexity</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<div id="links">
+			<a class="social facebook" href="#"><img src="images/facebook.png"></a>
+	    	<a class="social vk" href="#"><img src="images/vk.png"></a>
+	    	<a class="social twitter" href="#"><img src="images/twitter.png"></a>
+	    </div>
+		<div id="main">
+			<div id="nav">
+				<ul>
+					<li><a href="index.html">Main    &bull;</a></li>
+					<li><a href="myvector.html">MyVector    &bull;</a></li>
+					<li><a href="bubble.html">Bubble Sort    &bull;</a></li>
+					<li><a href="merge.html">Merge Sort    &bull;</a></li>
+					<li><a href="insert.html">Insert Sort    &bull;</a></li>
+					<li><a href="quick.html">Quick Sort    &bull;</a></li>
+					<li><a href="graphs.html" style="color:red;">Graphs    &bull;</a></li>
+					<li><a href="olsen.html">Olsen Gang</a></li>
+				</ul>
+			</div>
+			<div id="border"></div>
+			<div id="bubble">
+			<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #557799">#include &lt;iostream&gt;</span>
+<span style="color: #557799">#include &lt;ctime&gt;</span>
+<span style="color: #557799">#include &lt;cstdlib&gt;</span>
+
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> std;
+
+
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">bubble_sort</span>(<span style="color: #333399; font-weight: bold">int</span> ar[],<span style="color: #333399; font-weight: bold">int</span> length){
+    <span style="color: #333399; font-weight: bold">bool</span> ready<span style="color: #333333">=</span><span style="color: #007020">false</span>;
+    <span style="color: #008800; font-weight: bold">while</span>(ready<span style="color: #333333">==</span><span style="color: #007020">false</span>){
+        ready<span style="color: #333333">=</span><span style="color: #007020">true</span>;
+        <span style="color: #008800; font-weight: bold">for</span>(<span style="color: #333399; font-weight: bold">int</span> x<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;x<span style="color: #333333">&lt;</span>length<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>;x<span style="color: #333333">++</span>){
+            <span style="color: #008800; font-weight: bold">if</span>(ar[x]<span style="color: #333333">&gt;</span>ar[x<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span>]){
+                ready<span style="color: #333333">=</span><span style="color: #007020">false</span>;
+                <span style="color: #333399; font-weight: bold">int</span> temp<span style="color: #333333">=</span>ar[x];
+                ar[x]<span style="color: #333333">=</span>ar[x<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span>];
+                ar[x<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">=</span>temp;
+            }
+        }
+    }
+}
+
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">display</span>(<span style="color: #333399; font-weight: bold">int</span> ar[],<span style="color: #333399; font-weight: bold">int</span> length){
+<span style="color: #008800; font-weight: bold">for</span>(<span style="color: #333399; font-weight: bold">int</span> x<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;x<span style="color: #333333">&lt;</span>length;x<span style="color: #333333">++</span>){
+    cout<span style="color: #333333">&lt;&lt;</span>ar[x]<span style="color: #333333">&lt;&lt;</span>endl;
+}
+}
+
+<span style="color: #008800; font-weight: bold">inline</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">mySleep</span>(<span style="color: #333399; font-weight: bold">clock_t</span> sec)
+{
+<span style="color: #333399; font-weight: bold">clock_t</span> start_time <span style="color: #333333">=</span> clock();
+<span style="color: #333399; font-weight: bold">clock_t</span> end_time <span style="color: #333333">=</span> sec <span style="color: #333333">*</span> <span style="color: #0000DD; font-weight: bold">1000</span> <span style="color: #333333">+</span> start_time;
+<span style="color: #008800; font-weight: bold">while</span>(clock() <span style="color: #333333">!=</span> end_time);
+}
+
+
+
+
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>(){
+    <span style="color: #333399; font-weight: bold">int</span> start_s<span style="color: #333333">=</span>clock();
+    <span style="color: #333399; font-weight: bold">int</span> ara[<span style="color: #0000DD; font-weight: bold">51</span>]<span style="color: #333333">=</span>{<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">12</span>,<span style="color: #0000DD; font-weight: bold">45</span>,<span style="color: #0000DD; font-weight: bold">34</span>,<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">6</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">12</span>,<span style="color: #0000DD; font-weight: bold">46</span>,<span style="color: #0000DD; font-weight: bold">578</span>,<span style="color: #0000DD; font-weight: bold">678</span>,<span style="color: #0000DD; font-weight: bold">68</span>,<span style="color: #0000DD; font-weight: bold">45</span>,<span style="color: #0000DD; font-weight: bold">634</span>,<span style="color: #0000DD; font-weight: bold">23</span>,<span style="color: #0000DD; font-weight: bold">2523</span>,<span style="color: #0000DD; font-weight: bold">234</span>,<span style="color: #0000DD; font-weight: bold">235</span>,<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">6</span>,<span style="color: #0000DD; font-weight: bold">57</span>,<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #0000DD; font-weight: bold">6</span>,<span style="color: #0000DD; font-weight: bold">78</span>,<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #0000DD; font-weight: bold">5674</span>,<span style="color: #0000DD; font-weight: bold">435</span>,<span style="color: #0000DD; font-weight: bold">234</span>,<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">6342</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">234</span>,<span style="color: #0000DD; font-weight: bold">14</span>,<span style="color: #0000DD; font-weight: bold">23</span>,<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">234</span>,<span style="color: #0000DD; font-weight: bold">23</span>,<span style="color: #0000DD; font-weight: bold">23</span>,<span style="color: #0000DD; font-weight: bold">23455</span>,<span style="color: #0000DD; font-weight: bold">235</span>,<span style="color: #0000DD; font-weight: bold">34</span>,<span style="color: #0000DD; font-weight: bold">35</span>};
+
+    bubble_sort(ara,<span style="color: #0000DD; font-weight: bold">51</span>);
+
+    <span style="color: #008800; font-weight: bold">for</span>(<span style="color: #333399; font-weight: bold">int</span> x<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;x<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">51</span>;x<span style="color: #333333">++</span>){
+        cout<span style="color: #333333">&lt;&lt;</span>ara[x]<span style="color: #333333">&lt;&lt;</span>endl;
+    }
+
+
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;=================TIME===================&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    <span style="color: #333399; font-weight: bold">int</span> stop_s<span style="color: #333333">=</span>clock();
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;time: &quot;</span> <span style="color: #333333">&lt;&lt;</span> (stop_s<span style="color: #333333">-</span>start_s)<span style="color: #333333">/</span><span style="color: #333399; font-weight: bold">double</span>(CLOCKS_PER_SEC)<span style="color: #333333">*</span><span style="color: #0000DD; font-weight: bold">1000</span> <span style="color: #333333">&lt;&lt;</span> endl;
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+}
+</pre></div>
+		</div>
+
+
+		</div>
+		
+
+
+	</body>
+
+
+
+</html>

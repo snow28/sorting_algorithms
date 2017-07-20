@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Algorithm and Complexity</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<div id="links">
+			<a class="social facebook" href="https://web.facebook.com/profile.php?id=100011177262846&_rdr"><img src="images/facebook.png"></a>
+	    	<a class="social vk" href="#"><img src="images/vk.png"></a>
+	    	<a class="social twitter" href="#"><img src="images/twitter.png"></a>
+	    </div>
+		<div id="main">
+			<div id="nav">
+				<ul>
+					<li><a href="index.html">Main    &bull;</a></li>
+					<li><a href="myvector.html">MyVector    &bull;</a></li>
+					<li><a href="bubble.html">Bubble Sort    &bull;</a></li>
+					<li><a href="merge.html" style="color:red;">Merge Sort    &bull;</a></li>
+					<li><a href="insert.html">Insert Sort    &bull;</a></li>
+					<li><a href="quick.html">Quick Sort    &bull;</a></li>
+					<li><a href="graphs.html">Graphs    &bull;</a></li>
+					<li><a href="olsen.html">Olsen Gang</a></li>
+				</ul>
+			</div>
+			<div id="border"></div>
+			<h1>Merge Sort</h1>
+			<div id="main_explanation">
+			<p>In computer science, merge sort (also commonly spelled mergesort) is an efficient, general-purpose, comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the implementation preserves the input order of equal elements in the sorted output. Mergesort is a divide and conquer algorithm that was invented by John von Neumann in 1945.[1] A detailed description and analysis of bottom-up mergesort appeared in a report by Goldstine and Neumann as early as 1948.</p>
+			<p>Worst-case perfomance: O(n*logn);</p>
+			<p>Best-case perfomance: O(n*logn);</p>
+			<p>Avarage perfomance: O(n*logn);</p>
+
+			</div>
+			<div id="algorithmGif">
+			<img src="images/merge.gif" alt="merge_gif">
+			</div>
+			<div id="algorithm_Window">
+			
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #557799">#include &lt;iostream&gt;</span>
+<span style="color: #557799">#include &lt;ctime&gt;</span>
+
+
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> std;
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">merge</span>(<span style="color: #333399; font-weight: bold">int</span> myAr[], <span style="color: #333399; font-weight: bold">int</span> start, <span style="color: #333399; font-weight: bold">int</span> center, <span style="color: #333399; font-weight: bold">int</span> last)
+{
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #333333">*</span>tab_pom <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #333399; font-weight: bold">int</span>[(last<span style="color: #333333">-</span>start)];
+<span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span>start,j<span style="color: #333333">=</span>center<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span>,k<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;
+
+<span style="color: #008800; font-weight: bold">while</span> (i <span style="color: #333333">&lt;=</span>center <span style="color: #333333">&amp;&amp;</span> j<span style="color: #333333">&lt;=</span>last){
+<span style="color: #008800; font-weight: bold">if</span> (myAr[j]<span style="color: #333333">&lt;</span>myAr[i]){
+    tab_pom[k]<span style="color: #333333">=</span>myAr[j];
+    j<span style="color: #333333">++</span>;
+}
+<span style="color: #008800; font-weight: bold">else</span>{
+    tab_pom[k]<span style="color: #333333">=</span>myAr[i];
+    i<span style="color: #333333">++</span>;
+}
+    k<span style="color: #333333">++</span>;
+}
+    <span style="color: #008800; font-weight: bold">if</span> (i<span style="color: #333333">&lt;=</span>center)
+        {
+        <span style="color: #008800; font-weight: bold">while</span>(i<span style="color: #333333">&lt;=</span>center){
+            tab_pom[k]<span style="color: #333333">=</span>myAr[i];
+            i<span style="color: #333333">++</span>;
+            k<span style="color: #333333">++</span>;
+        }
+    }
+<span style="color: #008800; font-weight: bold">else</span>{
+    <span style="color: #008800; font-weight: bold">while</span>(j<span style="color: #333333">&lt;=</span>last){
+        tab_pom[k]<span style="color: #333333">=</span>myAr[j];
+        j<span style="color: #333333">++</span>;
+        k<span style="color: #333333">++</span>;
+    }
+    }
+<span style="color: #008800; font-weight: bold">for</span>(i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;i<span style="color: #333333">&lt;=</span>last<span style="color: #333333">-</span>start;i<span style="color: #333333">++</span>)
+myAr[start<span style="color: #333333">+</span>i]<span style="color: #333333">=</span>tab_pom[i];
+
+<span style="color: #888888">//cout &lt;&lt; endl;</span>
+<span style="color: #888888">//for(i=start;i&lt;=last;i++)</span>
+<span style="color: #888888">//cout&lt;&lt;&quot;intermediate step [&quot; &lt;&lt; i &lt;&lt; &quot;] = &quot; &lt;&lt;myAr[i]&lt;&lt;endl;</span>
+}
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">merge_sort</span>(<span style="color: #333399; font-weight: bold">int</span> myAr[], <span style="color: #333399; font-weight: bold">int</span> start, <span style="color: #333399; font-weight: bold">int</span> last){
+<span style="color: #333399; font-weight: bold">int</span> center;
+
+<span style="color: #008800; font-weight: bold">if</span>(start<span style="color: #333333">!=</span>last){
+center<span style="color: #333333">=</span>(start<span style="color: #333333">+</span>last)<span style="color: #333333">/</span><span style="color: #0000DD; font-weight: bold">2</span>;
+merge_sort(myAr,start,center);
+merge_sort(myAr,center<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span>,last);
+merge(myAr,start,center,last);
+}
+}
+
+</pre></div>
+</div>
+
+		<div id="bottom">
+				<ul>
+					<li><a href="index.html">Main  </a></li>
+					<li><a href="myvector.html">MyVector   </a></li>
+					<li><a href="bubble.html">Bubble Sort </a></li>
+					<li><a href="merge.html">Merge Sort   </a></li>
+					<li><a href="insert.html">Insert Sort    </a></li>
+					<li><a href="quick.html">Quick Sort    </a></li>
+					<li><a href="olsen.html">Olsen Gang</a></li>
+				</ul>
+			</div>
+		</div>
+
+		
+
+
+	</body>
+
+
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Algorithm and Complexity</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<div id="links">
+			<a class="social facebook" href="https://web.facebook.com/profile.php?id=100011177262846&_rdr"><img src="images/facebook.png"></a>
+	    	<a class="social vk" href="#"><img src="images/vk.png"></a>
+	    	<a class="social twitter" href="#"><img src="images/twitter.png"></a>
+	    </div>
+		<div id="main">
+			<div id="nav">
+				<ul>
+					<li><a href="index.html">Main  &bull;</a></li>
+					<li><a href="myvector.html">MyVector  &bull;</a></li>
+					<li><a href="bubble.html">Bubble Sort  &bull;</a></li>
+					<li><a href="merge.html">Merge Sort  &bull;</a></li>
+					<li><a href="insert.html">Insert Sort   &bull;</a></li>
+					<li><a href="quick.html" style="color:red;">Quick Sort    &bull;</a></li>
+					<li><a href="graphs.html" >Graphs  &bull;</a></li>
+					<li><a href="olsen.html">Olsen Gang</a></li>
+				</ul>
+			</div>
+			<div id="border"></div>
+			<h1>Quick Sort</h1>
+			<div id="main_explanation">
+			<p>Quicksort (sometimes called partition-exchange sort) is an efficient sorting algorithm, serving as a systematic method for placing the elements of an array in order. Developed by Tony Hoare in 1959,[1] with his work published in 1961,[2] it is still a commonly used algorithm for sorting. When implemented well, it can be about two or three times faster than its main competitors, merge sort and heapsort.</p>
+			<p>Quicksort is a comparison sort, meaning that it can sort items of any type for which a "less-than" relation (formally, a total order) is defined. In efficient implementations it is not a stable sort, meaning that the relative order of equal sort items is not preserved. Quicksort can operate in-place on an array, requiring small additional amounts of memory to perform the sorting.</p>
+			<p>Mathematical analysis of quicksort shows that, on average, the algorithm takes O(n log n) comparisons to sort n items. In the worst case, it makes O(n<sup>2</sup>) comparisons, though this behavior is rare.</p>
+			<p>Worst-case perfomance: O(n<sup>2</sup>);</p>
+			<p>Best-case perfomance: O(n log n) (simple partition) or O(n) (three-way partition and equal keys);</p>
+			<p>Avarage perfomance: O(n*logn);</p>
+
+			</div>
+			<div id="algorithmGif">
+			<img src="images/quick.gif" alt="quick_gif">
+			</div>
+			
+
+			<div id="algorithm_Window">
+				<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">quickSort</span>(<span style="color: #333399; font-weight: bold">int</span> arr[], <span style="color: #333399; font-weight: bold">int</span> left, <span style="color: #333399; font-weight: bold">int</span> right) {
+      <span style="color: #333399; font-weight: bold">int</span> i <span style="color: #333333">=</span> left, j <span style="color: #333333">=</span> right;
+      <span style="color: #333399; font-weight: bold">int</span> tmp;
+      <span style="color: #333399; font-weight: bold">int</span> pivot <span style="color: #333333">=</span> arr[(left <span style="color: #333333">+</span> right) <span style="color: #333333">/</span> <span style="color: #0000DD; font-weight: bold">2</span>];
+
+
+      <span style="color: #008800; font-weight: bold">while</span> (i <span style="color: #333333">&lt;=</span> j) {
+            <span style="color: #008800; font-weight: bold">while</span> (arr[i] <span style="color: #333333">&lt;</span> pivot)
+                  i<span style="color: #333333">++</span>;
+            <span style="color: #008800; font-weight: bold">while</span> (arr[j] <span style="color: #333333">&gt;</span> pivot)
+                  j<span style="color: #333333">--</span>;
+            <span style="color: #008800; font-weight: bold">if</span> (i <span style="color: #333333">&lt;=</span> j) {
+                  tmp <span style="color: #333333">=</span> arr[i];
+                  arr[i] <span style="color: #333333">=</span> arr[j];
+                  arr[j] <span style="color: #333333">=</span> tmp;
+                  i<span style="color: #333333">++</span>;
+                  j<span style="color: #333333">--</span>;
+            }
+      };
+
+      <span style="color: #888888">/* recursion */</span>
+      <span style="color: #008800; font-weight: bold">if</span> (left <span style="color: #333333">&lt;</span> j)
+            quickSort(arr, left, j);
+      <span style="color: #008800; font-weight: bold">if</span> (i <span style="color: #333333">&lt;</span> right)
+            quickSort(arr, i, right);
+}
+</pre></div>
+
+
+			</div>
+
+
+		<div id="bottom">
+				<ul>
+					<li><a href="index.html">Main  </a></li>
+					<li><a href="myvector.html">MyVector   </a></li>
+					<li><a href="bubble.html">Bubble Sort </a></li>
+					<li><a href="merge.html">Merge Sort   </a></li>
+					<li><a href="insert.html">Insert Sort    </a></li>
+					<li><a href="quick.html">Quick Sort    </a></li>
+					<li><a href="olsen.html">Olsen Gang</a></li>
+				</ul>
+			</div>
+
+		</div>
+		
+
+
+	</body>
+
+
+
+</html>

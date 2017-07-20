@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Algorithm and Complexity</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" href="main.css">
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+        
+
+        <!-- amCharts javascript code -->
+    <script type="text/javascript" src="js/vector.js"></script>
+	</head>
+	<body>
+		<div id="links">
+			<a class="social facebook" href="https://web.facebook.com/profile.php?id=100011177262846&_rdr"><img src="images/facebook.png"></a>
+	    	<a class="social vk" href="#"><img src="images/vk.png"></a>
+	    	<a class="social twitter" href="#"><img src="images/twitter.png"></a>
+	    </div>
+		<div id="main">
+			<div id="nav">
+                <ul>
+                    <li><a href="index.html">Main    &bull;</a></li>
+                    <li><a href="myvector.html" style="color:red;">MyVector    &bull;</a></li>
+                    <li><a href="bubble.html">Bubble Sort    &bull;</a></li>
+                    <li><a href="merge.html">Merge Sort    &bull;</a></li>
+                    <li><a href="insert.html">Insert Sort    &bull;</a></li>
+                    <li><a href="quick.html">Quick Sort    &bull;</a></li>
+                    <li><a href="graphs.html" >Graphs    &bull;</a></li>
+                    <li><a href="olsen.html">Olsen Gang</a></li>
+                </ul>
+            </div>
+			<div id="border"></div>
+			<h1>Vector</h1>
+			<div id="myVectorContent">
+				<p>Vectors are sequence containers representing arrays that can change in size.</p>
+				<p id="pBeforeTable">I implemented double linked list,with always available pointer to first and last element,it will reduce avarage time for finding apropriate element.</p>
+
+				<div id="deque"><img src="images/deque.gif"></div>
+                <div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
+                <p class="bottom_margin_3_5em">In the bigger quantity of operation my implementation shows 34% transcendence in efficiency </p>
+				<div id="measure">It is an algorithm which I used to get an execution time:</div>
+
+				<div id="measureCode">
+                <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #333399; font-weight: bold">double</span> PCFreq <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">0.0</span>;
+<span style="color: #008800; font-weight: bold">__int64</span> CounterStart <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">StartCounter</span>()
+{
+    LARGE_INTEGER li;
+    <span style="color: #008800; font-weight: bold">if</span>(<span style="color: #333333">!</span>QueryPerformanceFrequency(<span style="color: #333333">&amp;</span>li))
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;QueryPerformanceFrequency failed!</span><span style="color: #666666; font-weight: bold; background-color: #fff0f0">\n</span><span style="background-color: #fff0f0">&quot;</span>;
+
+    PCFreq <span style="color: #333333">=</span> <span style="color: #333399; font-weight: bold">double</span>(li.QuadPart)<span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">1000000.0</span>;
+
+    QueryPerformanceCounter(<span style="color: #333333">&amp;</span>li);
+    CounterStart <span style="color: #333333">=</span> li.QuadPart;
+}
+<span style="color: #333399; font-weight: bold">double</span> <span style="color: #0066BB; font-weight: bold">GetCounter</span>()
+{
+    LARGE_INTEGER li;
+    QueryPerformanceCounter(<span style="color: #333333">&amp;</span>li);
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #333399; font-weight: bold">double</span>(li.QuadPart<span style="color: #333333">-</span>CounterStart)<span style="color: #333333">/</span>PCFreq;
+}
+</pre></div>
+
+</div>
+
+
+
+
+				
+
+				<p id="vectorTittle">My implementation of Vector:</p>
+				<div id="vector">
+                   <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #557799">#include &lt;iostream&gt;</span>
+<span style="color: #557799">#include &lt;windows.h&gt;</span>
+<span style="color: #557799">#include &lt;iomanip&gt;</span>
+
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> std;
+
+<span style="color: #333399; font-weight: bold">double</span> PCFreq <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">0.0</span>;
+<span style="color: #008800; font-weight: bold">__int64</span> CounterStart <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">StartCounter</span>()
+{
+    LARGE_INTEGER li;
+    <span style="color: #008800; font-weight: bold">if</span>(<span style="color: #333333">!</span>QueryPerformanceFrequency(<span style="color: #333333">&amp;</span>li))
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;QueryPerformanceFrequency failed!</span><span style="color: #666666; font-weight: bold; background-color: #fff0f0">\n</span><span style="background-color: #fff0f0">&quot;</span>;
+
+    PCFreq <span style="color: #333333">=</span> <span style="color: #333399; font-weight: bold">double</span>(li.QuadPart)<span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">1000000.0</span>;
+
+    QueryPerformanceCounter(<span style="color: #333333">&amp;</span>li);
+    CounterStart <span style="color: #333333">=</span> li.QuadPart;
+}
+<span style="color: #333399; font-weight: bold">double</span> <span style="color: #0066BB; font-weight: bold">GetCounter</span>()
+{
+    LARGE_INTEGER li;
+    QueryPerformanceCounter(<span style="color: #333333">&amp;</span>li);
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #333399; font-weight: bold">double</span>(li.QuadPart<span style="color: #333333">-</span>CounterStart)<span style="color: #333333">/</span>PCFreq;
+}
+
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #333333">*</span>start<span style="color: #333333">=</span><span style="color: #008800; font-weight: bold">new</span> <span style="color: #333399; font-weight: bold">int</span>[<span style="color: #0000DD; font-weight: bold">50</span>];
+<span style="color: #333399; font-weight: bold">int</span> currentSize<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">50</span>;
+<span style="color: #333399; font-weight: bold">int</span> position<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;
+
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">add</span>(<span style="color: #333399; font-weight: bold">int</span> value){
+    <span style="color: #008800; font-weight: bold">if</span>( position <span style="color: #333333">&lt;</span> currentSize ){
+        start[position] <span style="color: #333333">=</span> value;
+        position<span style="color: #333333">++</span>;
+    }
+    <span style="color: #008800; font-weight: bold">else</span>{
+        currentSize<span style="color: #333333">+=</span><span style="color: #0000DD; font-weight: bold">50</span>;
+        <span style="color: #333399; font-weight: bold">int</span> <span style="color: #333333">*</span>tmp<span style="color: #333333">=</span>start;
+        start<span style="color: #333333">=</span><span style="color: #008800; font-weight: bold">new</span> <span style="color: #333399; font-weight: bold">int</span>[currentSize];
+        <span style="color: #008800; font-weight: bold">for</span>(<span style="color: #333399; font-weight: bold">int</span> x<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span> ; x <span style="color: #333333">&lt;</span> currentSize ; x<span style="color: #333333">++</span>){
+            start[x]<span style="color: #333333">=</span>tmp[x];
+        }
+        start[position]<span style="color: #333333">=</span>value;
+        position<span style="color: #333333">++</span>;
+    }
+}
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">display</span>(){
+    <span style="color: #008800; font-weight: bold">for</span>(<span style="color: #333399; font-weight: bold">int</span> x<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>; x <span style="color: #333333">&lt;</span> position; x<span style="color: #333333">++</span>){
+        cout<span style="color: #333333">&lt;&lt;</span>start[x]<span style="color: #333333">&lt;&lt;</span>endl;
+    }
+}
+
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">del</span>(<span style="color: #333399; font-weight: bold">int</span> positionToDel){
+    <span style="color: #008800; font-weight: bold">while</span>(positionToDel<span style="color: #333333">!=</span>position){
+        <span style="color: #333399; font-weight: bold">int</span> tmp<span style="color: #333333">=</span>start[positionToDel];
+        start[positionToDel]<span style="color: #333333">=</span>start[positionToDel<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span>];
+        start[positionToDel<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">=</span>tmp;
+        positionToDel<span style="color: #333333">++</span>;
+    }
+    position<span style="color: #333333">--</span>;
+
+}
+
+
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>(){
+    StartCounter();
+    <span style="color: #008800; font-weight: bold">for</span>(<span style="color: #333399; font-weight: bold">int</span> x<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;x<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">100</span>;x<span style="color: #333333">++</span>){
+        add(x);
+    }
+    <span style="color: #008800; font-weight: bold">for</span>(<span style="color: #333399; font-weight: bold">int</span> x<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;x<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">10</span>;x<span style="color: #333333">++</span>){
+        del(x<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">2</span>);
+    }
+    del(<span style="color: #0000DD; font-weight: bold">1</span>);
+    del(<span style="color: #0000DD; font-weight: bold">1</span>);
+
+    cout<span style="color: #333333">&lt;&lt;</span>setprecision(<span style="color: #0000DD; font-weight: bold">3</span>)<span style="color: #333333">&lt;&lt;</span>GetCounter()<span style="color: #333333">&lt;&lt;</span>endl;
+
+
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+}
+</pre></div>
+
+
+
+
+
+			     </div>
+                 </div>
+                 <div id="bottomBorder"></div>
+                 <div id="bottom">
+                <ul>
+                    <li><a href="index.html">Main  </a></li>
+                    <li><a href="myvector.html" >MyVector   </a></li>
+                    <li><a href="bubble.html">Bubble Sort </a></li>
+                    <li><a href="merge.html">Merge Sort   </a></li>
+                    <li><a href="insert.html">Insert Sort    </a></li>
+                    <li><a href="quick.html">Quick Sort    </a></li>
+                    <li><a href="olsen.html">Olsen Gang</a></li>
+                </ul>
+            </div>
+
+
+		</div>
+		
+
+
+	</body>
+</html>
+
+
+
+
+
+

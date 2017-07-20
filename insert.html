@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Algorithm and Complexity</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<div id="links">
+			<a class="social facebook" href="https://web.facebook.com/profile.php?id=100011177262846&_rdr"><img src="images/facebook.png"></a>
+	    	<a class="social vk" href="#"><img src="images/vk.png"></a>
+	    	<a class="social twitter" href="#"><img src="images/twitter.png"></a>
+	    </div>
+		<div id="main">
+			<div id="nav">
+				<ul>
+					<li><a href="index.html">Main    &bull;</a></li>
+					<li><a href="myvector.html">MyVector    &bull;</a></li>
+					<li><a href="bubble.html">Bubble Sort    &bull;</a></li>
+					<li><a href="merge.html">Merge Sort    &bull;</a></li>
+					<li><a href="insert.html" style="color:red;">Insert Sort    &bull;</a></li>
+					<li><a href="quick.html">Quick Sort    &bull;</a></li>
+					<li><a href="graphs.html" >Graphs    &bull;</a></li>
+					<li><a href="olsen.html">Olsen Gang</a></li>
+				</ul>
+			</div>
+			<div id="border"></div>
+			<h1>Insert Sort</h1>
+			<div id="main_explanation">
+			<p>Insertion sort is a simple sorting algorithm that builds the final sorted array (or list) one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort. However, insertion sort provides several advantages:</p>
+			<ul id="insert_ul">
+				<li>Simple implementation: Bentley shows a three-line C version, and a five-line optimized version;</li>
+				<li>Efficient for (quite) small data sets, much like other quadratic sorting algorithms;</li>
+				<li>More efficient in practice than most other simple quadratic (i.e., O(n2)) algorithms such as selection sort or bubble sort;</li>
+				<li>Adaptive, i.e., efficient for data sets that are already substantially sorted: the time complexity is O(nk) when each element in the input is no more than k places away from its sorted position;</li>
+				<li>Stable; i.e., does not change the relative order of elements with equal keys;</li>
+				<li>In-place; i.e., only requires a constant amount O(1) of additional memory space;</li>
+				<li>Online; i.e., can sort a list as it receives it;</li>
+			</ul>
+
+			<p>Worst-case perfomance: O(n<sup>2</sup>);</p>
+			<p>Best-case perfomance: O(n);</p>
+			<p>Avarage perfomance: O(n<sup>2</sup>);</p>
+
+			</div>
+			<div id="algorithmGif">
+			<img src="images/insert.gif" alt="insert_gif">
+			</div>
+
+			<div id="algorithm_Window">
+				
+				<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #557799">#include &lt;iostream&gt;</span>
+<span style="color: #557799">#include &lt;ctime&gt;</span>
+<span style="color: #557799">#include &lt;cstdlib&gt;</span>
+
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> std;
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">changeup</span>(<span style="color: #333399; font-weight: bold">int</span> ar[],<span style="color: #333399; font-weight: bold">int</span> position){
+    <span style="color: #333399; font-weight: bold">int</span> tmp<span style="color: #333333">=</span>ar[position];
+    ar[position]<span style="color: #333333">=</span>ar[position<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span>];
+    ar[position<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">=</span>tmp;
+
+}
+
+<span style="color: #888888">//&lt;-----------Using of recursion functions-----------&gt;</span>
+
+
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">changedown</span>(<span style="color: #333399; font-weight: bold">int</span> ar[],<span style="color: #333399; font-weight: bold">int</span> position){
+    <span style="color: #333399; font-weight: bold">int</span> tmp<span style="color: #333333">=</span>ar[position];
+    ar[position]<span style="color: #333333">=</span>ar[position<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>];
+    ar[position<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">=</span>tmp;
+    <span style="color: #008800; font-weight: bold">if</span>(ar[position<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">&lt;</span>ar[position<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">2</span>]){
+        changedown(ar,position<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>);
+    }
+}
+
+
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">insert_sort</span>(<span style="color: #333399; font-weight: bold">int</span> ar[],<span style="color: #333399; font-weight: bold">int</span> length){
+    <span style="color: #008800; font-weight: bold">for</span>(<span style="color: #333399; font-weight: bold">int</span> x<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;x<span style="color: #333333">&lt;</span>length;x<span style="color: #333333">++</span>){
+        <span style="color: #008800; font-weight: bold">if</span>(x<span style="color: #333333">&gt;</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">&amp;&amp;</span>x<span style="color: #333333">&lt;</span>length){
+            <span style="color: #008800; font-weight: bold">if</span>(ar[x]<span style="color: #333333">&gt;</span>ar[x<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span>]){
+                changeup(ar,x);
+                }
+            <span style="color: #008800; font-weight: bold">if</span>(ar[x]<span style="color: #333333">&lt;</span>ar[x<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>]){
+                changedown(ar,x);
+                }
+            }
+            <span style="color: #008800; font-weight: bold">else</span> <span style="color: #008800; font-weight: bold">if</span>(x<span style="color: #333333">==</span>length){
+                changedown(ar,x);
+            }
+            <span style="color: #008800; font-weight: bold">else</span> <span style="color: #008800; font-weight: bold">if</span>(x<span style="color: #333333">==</span><span style="color: #0000DD; font-weight: bold">0</span>){
+                changeup(ar,x);
+            }
+
+         }
+}
+</pre></div>
+
+			</div>
+
+		<div id="bottom">
+				<ul>
+					<li><a href="index.html">Main  </a></li>
+					<li><a href="myvector.html">MyVector   </a></li>
+					<li><a href="bubble.html">Bubble Sort </a></li>
+					<li><a href="merge.html">Merge Sort   </a></li>
+					<li><a href="insert.html">Insert Sort    </a></li>
+					<li><a href="quick.html">Quick Sort    </a></li>
+					<li><a href="olsen.html">Olsen Gang</a></li>
+				</ul>
+			</div>
+		</div>
+		
+
+
+	</body>
+
+
+
+</html>
